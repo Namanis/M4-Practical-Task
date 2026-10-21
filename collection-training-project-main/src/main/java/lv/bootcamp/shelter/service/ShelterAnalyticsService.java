@@ -18,11 +18,12 @@ public class ShelterAnalyticsService {
         Map<String, List<Animal>> animalsBySpecies = new HashMap<>();
         List<String> animalsNeedingVetInput = new ArrayList<>();
 
+        int importedCount = allAnimals.size();
         for (Animal animal : allAnimals) {
             uniqueSpecies.add(animal.getSpecies());
             animalsBySpecies.computeIfAbsent(animal.getSpecies(), key -> new ArrayList<>()).add(animal);
 
-            if (!animal.isVaccinated() || animal.getAge().isEmpty()) {
+            if (animal.getAge().isEmpty()) {
                 animalsNeedingVetInput.add(animal.getName() + "(" + animal.getSpecies() + ")");
             }
         }
@@ -35,6 +36,9 @@ public class ShelterAnalyticsService {
                 .filter(animal -> !animal.isVaccinated())
                 .collect(Collectors.groupingBy(Animal::getSpecies, Collectors.counting()));
 
+        Map<String, Long> totalCountBySpecies = allAnimals.stream()
+                .collect(Collectors.groupingBy(Animal::getSpecies, Collectors.counting()));
+
         Map<String, Animal> oldestAnimalBySpecies = allAnimals.stream()
                 .filter(animal -> animal.getAge().isPresent())
                 .collect(Collectors.toMap(
@@ -42,6 +46,7 @@ public class ShelterAnalyticsService {
                         Function.identity(),
                         BinaryOperator.maxBy(Comparator.comparing(animal -> animal.getAge().orElseThrow()))));
 
-        return new ShelterReportData(importResult, uniqueSpecies, animalsBySpecies, animalsNeedingVetInput, vaccinatedCountBySpecies, unvaccinatedCountBySpecies, oldestAnimalBySpecies);
+        return new ShelterReportData(importResult, importedCount, uniqueSpecies, animalsBySpecies, animalsNeedingVetInput,
+                totalCountBySpecies, vaccinatedCountBySpecies, unvaccinatedCountBySpecies, oldestAnimalBySpecies);
     }
 }

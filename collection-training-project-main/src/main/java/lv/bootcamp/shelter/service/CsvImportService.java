@@ -15,6 +15,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Slf4j
 public class CsvImportService {
@@ -38,7 +39,7 @@ public class CsvImportService {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                Animal animal = parseLine(line);                       // CHANGED (1)
+                Animal animal = parseLine(line);
                 if (animal == null) {
                     skipped++;
                 } else {
@@ -50,6 +51,30 @@ public class CsvImportService {
             log.error("Failed to read {}", inputPath, e);
         }
         log.info("Import finished: {} imported, {} skipped", imported, skipped);
+        return new ImportResult(allAnimals, skipped);
+    }
+
+    public ImportResult importDirectory(Path directory) {
+        log.info("Scanning {} for CSV files", directory);
+        List<Animal> allAnimals = new ArrayList<>();
+        int skipped = 0;
+
+        try (Stream<Path> paths = Files.walk(directory)) {
+            List<Path> csvFiles = paths
+                    .filter(path -> path.toString().endsWith(".csv"))
+                    .sorted()
+                    .toList();
+
+            for (Path csvFile : csvFiles) {
+                ImportResult result = importAnimals(csvFile);
+                allAnimals.addAll(result.allAnimals());
+                skipped += result.skippedRows();
+            }
+        } catch (IOException e) {
+            log.error("Failed to scan {}", directory, e);
+        }
+
+        log.info("All files imported: {} animals, {} skipped", allAnimals.size(), skipped);
         return new ImportResult(allAnimals, skipped);
     }
 

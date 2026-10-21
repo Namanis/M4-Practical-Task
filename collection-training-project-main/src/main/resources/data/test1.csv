@@ -1,0 +1,6 @@
+name,species,age,vaccinated,intakeDate
+Bruno,Dog,6,true,06.02.2026
+Misty,Cat,,false,07.02.2026
+Pip,Hamster,1,true,08.02.2026
+Tango,Bird,abc,true,09.02.2026
+Olive,Rabbit,3,true,10.02.2026

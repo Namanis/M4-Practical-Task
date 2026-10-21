@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public record ShelterReportData(ImportResult importResult, Set<String> uniqueSpecies,
+public record ShelterReportData(ImportResult importResult,
+                                int importedCount,
+                                Set<String> uniqueSpecies,
                                 Map<String, List<Animal>> animalsBySpecies,
                                 List<String> animalsNeedingVetInput,
+                                Map<String, Long> totalCountBySpecies,
                                 Map<String, Long> vaccinatedCountBySpecies,
                                 Map<String, Long> unvaccinatedCountBySpecies,
                                 Map<String, Animal> oldestAnimalBySpecies) {

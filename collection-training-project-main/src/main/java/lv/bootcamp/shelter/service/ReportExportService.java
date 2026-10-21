@@ -28,9 +28,9 @@ public class ReportExportService {
             writer.println("Skipped: " + reportData.importResult().skippedRows());
             writer.println("Unique species: " + reportData.uniqueSpecies());
             writer.println();
+
             for (String species : reportData.uniqueSpecies()) {
-                int total = reportData.animalsBySpecies().get(species).size();
-                writer.print(species + ": " + total + " total:");
+                writer.print(species + ": " + reportData.totalCountBySpecies().get(species) + " total:");
                 writer.print(" Vaccinated = " + reportData.vaccinatedCountBySpecies().get(species));
                 writer.println(" UNVaccinated = " + reportData.unvaccinatedCountBySpecies().get(species));
             }

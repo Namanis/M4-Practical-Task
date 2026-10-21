@@ -14,7 +14,7 @@ public class ShelterCsvApplication {
 
     public static void main(String[] args) {
         Path inputPath = Path.of("src", "main", "resources", "data", "intake.csv");
-        Path outputPath = Path.of("output", "processed-files.txt");
+        Path outputPath = Path.of("output", "upload-report.txt");
 
         CsvImportService importService = new CsvImportService();
         ShelterAnalyticsService analyticsService = new ShelterAnalyticsService();
@@ -22,7 +22,15 @@ public class ShelterCsvApplication {
 
         ImportResult importResult = importService.importAnimals(inputPath);
         ShelterReportData reportData = analyticsService.buildReportData(importResult);
-
         reportExportService.writeReport(outputPath, reportData);
+
+
+        Path inputPathOfDir = Path.of("src", "main", "resources", "data");
+        Path outputPathOfDir = Path.of("output", "directory-report.txt");
+
+        CsvImportService importDirectory = new CsvImportService();
+        ImportResult importDirResult = importDirectory.importDirectory(inputPathOfDir);
+        ShelterReportData reportDirData = analyticsService.buildReportData(importDirResult);
+        reportExportService.writeReport(outputPathOfDir, reportDirData);
     }
 }

@@ -1,4 +1,4 @@
-Generated: 21/10/2026 22:07:24
+Generated: 21/10/2026 22:44:54
 Imported: 32
 Skipped: 5
 Unique species: [Bird, Cat, Dog, Rabbit]
@@ -14,4 +14,4 @@ Cat: Cleo -> 5
 Dog: Shadow -> 9
 Rabbit: Gizmo -> 5
 
-Animals needing vet input: [Buddy(Dog), Max(Dog), Charlie(Bird), Milo(Dog), Rocky(Rabbit), Coco(Bird), Ruby(Rabbit), Leo(Cat), Zoe(Cat), Gizmo(Rabbit), Pepper(Bird), Pumpkin(Rabbit), Skye(Bird)]
+Animals needing vet input: [Milo(Dog), Leo(Cat), Pepper(Bird)]
