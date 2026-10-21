@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -17,4 +18,9 @@ public class Animal {
     private final boolean vaccinated;
     private final LocalDate intakeDate;
 
+    public Optional<Integer> getAge() {
+        return Optional.ofNullable(age);
+    }
+
 }
+

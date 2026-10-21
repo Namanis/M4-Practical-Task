@@ -1,5 +1,5 @@
 name,species,age,vaccinated,intakeDate
-Buddy,Dog,3,true,15.01.2026
+Buddy,Dog,,true,15.01.2026
 Luna,Cat,2,true,16.01.2026
 Max,Dog,5,false,18.01.2026
 Bella,Cat,4,true,19.01.2026

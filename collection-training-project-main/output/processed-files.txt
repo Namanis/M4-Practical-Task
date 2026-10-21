@@ -1,0 +1,17 @@
+Generated: 21/10/2026 22:07:24
+Imported: 32
+Skipped: 5
+Unique species: [Bird, Cat, Dog, Rabbit]
+
+Bird: 6 total: Vaccinated = 2 UNVaccinated = 4
+Cat: 8 total: Vaccinated = 7 UNVaccinated = 1
+Dog: 11 total: Vaccinated = 10 UNVaccinated = 1
+Rabbit: 7 total: Vaccinated = 3 UNVaccinated = 4
+
+Oldest animal per species:
+Bird: Charlie -> 4
+Cat: Cleo -> 5
+Dog: Shadow -> 9
+Rabbit: Gizmo -> 5
+
+Animals needing vet input: [Buddy(Dog), Max(Dog), Charlie(Bird), Milo(Dog), Rocky(Rabbit), Coco(Bird), Ruby(Rabbit), Leo(Cat), Zoe(Cat), Gizmo(Rabbit), Pepper(Bird), Pumpkin(Rabbit), Skye(Bird)]
